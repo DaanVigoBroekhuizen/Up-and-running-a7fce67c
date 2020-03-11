@@ -1,3 +1,18 @@
+<h1>welkom op het netland beheerpaneel</h1>
+
+
+<table>
+    <h2>series</h2>
+    <tr>
+        <th>titel</th>
+        <th>rating</th>
+    </tr>
+    <!--
+    <tr>
+        <td>ghjghj</td>
+        <td>7</td>
+    </tr>
+    -->
 <?php
  $host = '127.0.0.1';
  $db   = 'netland';
@@ -17,11 +32,38 @@
       throw new \PDOException($e->getMessage(), (int)$e->getCode());
  }
 
- echo "hoi";
-
- $stmt = $pdo->query('SELECT title FROM series');
+ $stmt = $pdo->query('SELECT * FROM series');
  while ($row = $stmt->fetch())
  {
-     echo $row['title'] . "\n";
+     ?>
+    <tr>
+        <td><?= $row['title']?></td>
+        <td><?= $row['rating']?></td>
+    </tr>
+     <?php
+     //echo $row['title']. $row['rating']. "\n";
  }
     ?>
+</table>
+
+<table>
+    <h2>films</h2>
+    <tr>
+        <th>titel</th>
+        <th>duur</th>
+    </tr>
+
+<?php
+    $stmt = $pdo->query('SELECT * FROM movies');
+ while ($row = $stmt->fetch())
+ {
+     ?>
+    <tr>
+        <td><?= $row['title']?></td>
+        <td><?= $row['duur']?></td>
+    </tr>
+     <?php
+     //echo $row['title']. $row['rating']. "\n";
+ }
+    ?>
+</table>
